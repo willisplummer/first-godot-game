@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://ycs7bs1xyej0"]
+
+[ext_resource type="Script" path="res://ui/dialogue_box.gd" id="1_6hc1u"]
+[ext_resource type="Texture2D" uid="uid://dd5kkgtamd0a" path="res://art/New Piskel-1.png.png" id="2_xmjdo"]
+
+[node name="DialogueBox" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6hc1u")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_xmjdo")
+region_rect = Rect2(0, 0, 144, 144)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+vertical_alignment = 1
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

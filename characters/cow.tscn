@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://d15a82epmyd0a"]
+
+[ext_resource type="Texture2D" uid="uid://beisewnp8nanm" path="res://art/Sprout Lands - Sprites - Basic pack/Characters/Free Cow Sprites.png" id="1_6peuv"]
+[ext_resource type="Script" path="res://characters/cow.gd" id="1_oc4fq"]
+[ext_resource type="PackedScene" uid="uid://1em85yyrxqbm" path="res://scenes/component/health_component.tscn" id="2_b6mmp"]
+[ext_resource type="PackedScene" uid="uid://slow51iqigaa" path="res://scenes/component/item_drop_component.tscn" id="3_brpxt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gpuo"]
+size = Vector2(21, 11)
+
+[sub_resource type="Animation" id="Animation_rx165"]
+resource_name = "idle_right"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_6khuh"]
+resource_name = "walk_right"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rrbko"]
+_data = {
+"idle_right": SubResource("Animation_rx165"),
+"walk_right": SubResource("Animation_6khuh")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_056b6"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d63kb"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2knps"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ht3g"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pgfn2"]
+advance_mode = 0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oa5ts"]
+states/Start/position = Vector2(141.5, 98.75)
+states/idle_right/node = SubResource("AnimationNodeAnimation_056b6")
+states/idle_right/position = Vector2(330, 100.188)
+states/walk_right/node = SubResource("AnimationNodeAnimation_d63kb")
+states/walk_right/position = Vector2(532, 100.375)
+transitions = ["Start", "idle_right", SubResource("AnimationNodeStateMachineTransition_2knps"), "idle_right", "walk_right", SubResource("AnimationNodeStateMachineTransition_4ht3g"), "walk_right", "idle_right", SubResource("AnimationNodeStateMachineTransition_pgfn2")]
+
+[node name="Cow" type="CharacterBody2D"]
+script = ExtResource("1_oc4fq")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_b6mmp")]
+max_health = 1.0
+
+[node name="ItemDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_brpxt")]
+health_component = NodePath("../HealthComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6peuv")
+hframes = 3
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 7.5)
+shape = SubResource("RectangleShape2D_8gpuo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rrbko")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_oa5ts")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

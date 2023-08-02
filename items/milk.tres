@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ITEM" load_steps=3 format=3 uid="uid://bn72scwu1o4e2"]
+
+[ext_resource type="Texture2D" uid="uid://cdwythmndpdgw" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Egg item.png" id="1_w41nq"]
+[ext_resource type="Script" path="res://items/classes/item_class.gd" id="2_3x8a6"]
+
+[resource]
+script = ExtResource("2_3x8a6")
+ITEM_NAME = "Milk"
+ITEM_TEXTURE = ExtResource("1_w41nq")
+QUANTITY = 0
+HOVER_TEXT = "Yum Yum Milk"

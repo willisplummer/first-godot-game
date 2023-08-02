@@ -1,0 +1,6 @@
+# Godot 4+ specific ignores
+.godot/
+
+# system misc
+.DS_Store
+
