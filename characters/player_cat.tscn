@@ -297,10 +297,10 @@ parameters/walk/blend_position = Vector2(0, 0)
 script = SubResource("GDScript_t3l4b")
 
 [node name="PlayerOrientation" type="Marker2D" parent="."]
-rotation = 12.7409
 
 [node name="InteractionArea" type="Area2D" parent="PlayerOrientation"]
 collision_layer = 2
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOrientation/InteractionArea"]
 position = Vector2(0, 11)

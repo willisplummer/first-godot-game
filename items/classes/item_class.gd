@@ -1,18 +1,18 @@
 @tool
 extends Resource
 
-class_name ITEM
+class_name Item
 
-@export var ITEM_NAME: String
-@export var ITEM_TEXTURE: Texture
-@export var QUANTITY: int
-@export_multiline var HOVER_TEXT: String
+@export var item_name: String
+@export var item_texture: Texture
+@export var quantity: int
+@export_multiline var hover_text: String
 
 func add_quantity(quant: int):
-	QUANTITY += quant
+	quantity += quant
 
 func get_texture() -> Texture:
-	return ITEM_TEXTURE
+	return item_texture
 
 func get_quantity() -> int:
-	return QUANTITY
+	return quantity

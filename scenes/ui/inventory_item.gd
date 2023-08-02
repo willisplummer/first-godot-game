@@ -1,9 +1,9 @@
 extends MarginContainer
 
-@onready var item_scene = $AspectRatioContainer/Item
+@onready var item_texture: TextureRect = $AspectRatioContainer/ItemTexture
+@onready var item: Item
 
-func set_item(item: ITEM):
-	if item_scene == null:
-		print("item_scene is null")
-		return
-	item_scene.my_item = item
+func set_item(new_item: Item):
+	item = new_item
+	if item != null && item_texture != null:
+		item_texture.set_texture(item.get_texture())

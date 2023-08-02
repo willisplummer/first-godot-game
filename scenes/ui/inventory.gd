@@ -13,11 +13,9 @@ func delete_children(node):
 
 func _ready():
 	inventory_manager.inventory_updated.connect(on_inventory_updated)
+	pass
 
-func add_item(_item: ITEM):
-	return
-
-func on_inventory_updated(inv: Array[ITEM]):
+func on_inventory_updated(inv: Array[Item]):
 	print("inventory component receiving inventory updated")
 	if inventory_item_scene == null:
 		return

@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://d15a82epmyd0a"]
+[gd_scene load_steps=16 format=3 uid="uid://d15a82epmyd0a"]
 
 [ext_resource type="Texture2D" uid="uid://beisewnp8nanm" path="res://art/Sprout Lands - Sprites - Basic pack/Characters/Free Cow Sprites.png" id="1_6peuv"]
 [ext_resource type="Script" path="res://characters/cow.gd" id="1_oc4fq"]
 [ext_resource type="PackedScene" uid="uid://1em85yyrxqbm" path="res://scenes/component/health_component.tscn" id="2_b6mmp"]
 [ext_resource type="PackedScene" uid="uid://slow51iqigaa" path="res://scenes/component/item_drop_component.tscn" id="3_brpxt"]
+[ext_resource type="Resource" uid="uid://c8gqnunpkreni" path="res://items/res/egg.tres" id="4_kn52t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gpuo"]
 size = Vector2(21, 11)
@@ -78,12 +79,14 @@ script = ExtResource("1_oc4fq")
 max_health = 1.0
 
 [node name="ItemDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_brpxt")]
+item_resource = ExtResource("4_kn52t")
 health_component = NodePath("../HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6peuv")
 hframes = 3
 vframes = 2
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 7.5)

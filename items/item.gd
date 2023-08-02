@@ -1,15 +1,20 @@
 @tool
-extends TextureRect
+extends StaticBody2D
 
-@export var my_item: ITEM :
+@onready var sprite = $Sprite2D
+
+@export var item: Item :
 	set (value):
-		if value != null:
-			my_item = value
-			self.texture = value.get_texture()
-			$RichTextLabel.bbcode_text = str(value.get_quantity())
-		else:
-			self.texture = null
-			$RichTextLabel.bbcode_text = ""
+		item = value
+		if sprite != null:
+			# man i hate this ternary syntax
+			var new_texture = null if value == null else value.get_texture()
+			sprite.set_texture(new_texture)
 
 func add_quantity(addedQuant: int):
-	my_item.add_quantity(addedQuant)
+	item.add_quantity(addedQuant)
+
+func interact():
+	GameEvents.emit_item_collected(item)
+	# TODO: dont delete if the item can't be picked up
+	queue_free()

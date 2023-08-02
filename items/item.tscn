@@ -1,12 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuiimtw3rsyxh"]
+[gd_scene load_steps=5 format=3 uid="uid://cuiimtw3rsyxh"]
 
 [ext_resource type="Script" path="res://items/item.gd" id="1_is17q"]
+[ext_resource type="Texture2D" uid="uid://cdwythmndpdgw" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Egg item.png" id="1_wudu3"]
+[ext_resource type="Resource" uid="uid://c8gqnunpkreni" path="res://items/res/egg.tres" id="3_wwx83"]
 
-[node name="item" type="TextureRect"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6p873"]
+radius = 15.0
+
+[node name="Item" type="StaticBody2D"]
 script = ExtResource("1_is17q")
+item = ExtResource("3_wwx83")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6p873")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wudu3")

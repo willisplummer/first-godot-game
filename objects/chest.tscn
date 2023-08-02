@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://4rdqn2cr3wxb"]
+[gd_scene load_steps=7 format=3 uid="uid://4rdqn2cr3wxb"]
 
 [ext_resource type="Texture2D" uid="uid://qtlbrokwt4xv" path="res://art/Sprout Lands - Sprites - Basic pack/Objects/Chest.png" id="1_lobin"]
+[ext_resource type="PackedScene" uid="uid://cuiimtw3rsyxh" path="res://items/item.tscn" id="2_7fe4o"]
 [ext_resource type="Script" path="res://objects/chest.gd" id="2_44k40"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_beuoc"]
@@ -29,6 +30,7 @@ _data = {
 
 [node name="Chest" type="StaticBody2D"]
 script = ExtResource("2_44k40")
+item_scene = ExtResource("2_7fe4o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lobin")

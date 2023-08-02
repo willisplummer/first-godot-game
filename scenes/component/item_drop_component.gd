@@ -2,6 +2,7 @@ extends Node
 
 @export_range(0,1) var drop_percent: float = 0.5
 @export var item_scene: PackedScene
+@export var item_resource: Item = null
 @export var health_component: HealthComponent
 
 func _ready():
@@ -18,6 +19,6 @@ func on_died():
 		return
 
 	var spawn_position = owner.global_position
-	var item_instance: Node2D = item_scene.instantiate()
+	var item_instance: Node = item_scene.instantiate()
 	owner.get_parent().add_child(item_instance)
 	item_instance.global_position = spawn_position

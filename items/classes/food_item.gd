@@ -1,6 +1,6 @@
 @tool
-extends ITEM
+extends Item
 
-class_name FOOD_ITEM
+class_name FoodItem
 
 @export var HEALTH_RESTORED: float

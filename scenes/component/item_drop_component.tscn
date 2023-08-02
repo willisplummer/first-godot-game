@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://slow51iqigaa"]
 
 [ext_resource type="Script" path="res://scenes/component/item_drop_component.gd" id="1_iuvmx"]
-[ext_resource type="PackedScene" uid="uid://cr786ohi6y5kn" path="res://items/egg.tscn" id="2_ksu0b"]
+[ext_resource type="PackedScene" uid="uid://cuiimtw3rsyxh" path="res://items/item.tscn" id="2_tcgl0"]
 
 [node name="ItemDropComponent" type="Node"]
 script = ExtResource("1_iuvmx")
-item_scene = ExtResource("2_ksu0b")
+item_scene = ExtResource("2_tcgl0")
